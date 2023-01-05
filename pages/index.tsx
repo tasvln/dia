@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 const inter = Inter({ subsets: ['latin'] })
 
 let id = 0
-let pid = 0
+let pid = 0 + 1
 
 export const data = [
   {
@@ -60,7 +60,7 @@ export default function Home() {
       <Head>
         <title>Dia - Shopify Test</title>
       </Head>
-      <Header>DIA</Header>
+      <Header>DIA cart()</Header>
       <Container>
         {data.map((product) => (
           <Product key={product.id}>
@@ -68,7 +68,7 @@ export default function Home() {
               <Image src={product.image} alt={product.name} fill/>
             </ImageContainer>
             <p>{product.name}</p>
-            <p>{product.price}</p>
+            <span>${product.price}</span>
             <button>Add to Card</button>
           </Product>
         ))}
@@ -102,10 +102,13 @@ const Container = styled('div', {
   width: '100%',
 })
 
-const ImageContainer = styled('button', {
+const ImageContainer = styled('div', {
   width: '100%',
   height: 400,
   position: 'relative',
+  cursor: 'pointer',
+  border: '1px solid #eaeaea',
+  borderRadius: '5px',
 })
 
 const Product = styled('div', {
@@ -115,7 +118,20 @@ const Product = styled('div', {
   border: '1px solid #eaeaea',
   borderRadius: '5px',
 
+  p: {
+    marginTop: '1rem',
+    fontSize: '1.5rem',
+  },
+  
+  span: {
+    marginTop: 0,
+    marginBottom: '1rem',
+  },
 
-
-
+  button: {
+    padding: '.5rem',
+    backgroundColor: 'black',
+    color: 'white',
+    borderRadius: '5px',
+  },
 })
